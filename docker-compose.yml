@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  am:
+    build: ./am
+    image: local/am
+    ports:
+      - 8080:8080
+      - 8443:8443
+    volumes:
+      - $PWD/volumes/am/am:/root/am
+      - $PWD/volumes/am/.openamcfg:/root/.openamcfg
+    networks:
+      - my_network
+
+  ds:
+    build: ./ds
+    image: local/ds
+    ports:
+      - 389:389
+      - 636:636
+    networks:
+      - my_network
+
+  ig:
+    build: ./ig
+    image: local/ig
+    ports:
+      - 8081:8080
+      - 8444:8443
+    volumes:
+      - ./ig/.openig:/var/ig/
+    networks:
+      - my_network
+
+  idm:
+    build: ./idm
+    image: local/idm
+    ports:
+      - 8082:8080
+      - 8445:8443
+    networks:
+      - my_network
+
+  tomcat:
+    build: ./tomcat
+    image: local/tomcat
+    ports:
+      - 8083:8080
+      - 8446:8443
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
