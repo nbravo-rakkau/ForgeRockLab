@@ -14,3 +14,8 @@
 - tomcat 
     - sample.war
     - Dockerfile
+
+Para levantar el lab ejecutar:
+```
+docker-compose up --build 
+```
