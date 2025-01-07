@@ -24,5 +24,13 @@ RUN mkdir -p "${IG_INSTANCE_DIR}" \
 
 USER root
 
+RUN apk update && apk add iputils
+RUN apk update && apk add --no-cache \
+    netcat-openbsd \
+    curl \
+    iproute2 \
+    busybox-extras
+
 ENV IG_RUN_MODE=development
+ENV AGENT_SECRET_ID=UGluZ0FnZW50MjAyNC4=
 ENTRYPOINT ${INSTALL_DIR}/bin/start.sh ${IG_INSTANCE_DIR}

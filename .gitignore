@@ -1,6 +1,8 @@
-ig/.openig/*
+ig/.openig
 ig/PingGateway-*
+ig/secrets
 am/AM-*
 am/Amster*
+am/openam
 ds/DS-*
 idm/IDM-*

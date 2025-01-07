@@ -8,10 +8,11 @@ services:
       - 8080:8080
       - 8443:8443
     volumes:
-      - $PWD/volumes/am/am:/root/am
-      - $PWD/volumes/am/.openamcfg:/root/.openamcfg
+      - ./am/openam:/root/openam
     networks:
-      - my_network
+      my_network:
+        aliases:
+          - openam.example.com 
 
   ds:
     build: ./ds
@@ -26,10 +27,11 @@ services:
     build: ./ig
     image: local/ig
     ports:
-      - 8081:8080
-      - 8444:8443
+      - 8081:8081
+      - 8444:8444
     volumes:
       - ./ig/.openig:/var/ig/
+      - ./ig/secrets:/secrets
     networks:
       - my_network
 

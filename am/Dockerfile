@@ -17,3 +17,6 @@ ADD Amster-${AM_VERSION}.zip .
 RUN unzip Amster*.zip -d /root && rm Amster*.zip
 
 COPY AM-${AM_VERSION}.war /usr/local/tomcat/webapps/openam.war
+
+RUN apt-get update && apt-get install -y vim
+RUN apt-get update && apt-get install -y bash
