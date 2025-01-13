@@ -1,8 +1,12 @@
-ig/.openig
+ig/.openig/data
+ig/.openig/logs
+ig/.openig/scripts
+ig/.openig/tmp
 ig/PingGateway-*
 ig/secrets
 am/AM-*
 am/Amster*
 am/openam
+am/security
 ds/DS-*
 idm/IDM-*

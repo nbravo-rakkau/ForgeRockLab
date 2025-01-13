@@ -1,0 +1,19 @@
+{
+  "name" : "002_sample",
+  "baseURI" : "https://wiki.rakkau.com",
+  "condition" : "${find(request.uri.path, '^/es/home')}",
+  "capture" : [ "request", "response" ],
+  "heap" : [ {
+    "name" : "ReverseProxyHandler",
+    "type" : "ReverseProxyHandler",
+    "capture" : [ "request", "response" ]
+  }, {
+    "name" : "capture",
+    "type" : "CaptureDecorator",
+    "config" : {
+      "captureEntity" : true,
+      "captureContext" : true
+    }
+  } ],
+  "handler" : "ReverseProxyHandler"
+}

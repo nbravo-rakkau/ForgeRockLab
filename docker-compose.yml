@@ -8,7 +8,7 @@ services:
       - 8080:8080
       - 8443:8443
     volumes:
-      - ./am/openam:/root/openam
+#      - ./am/openam:/root/openam
     networks:
       my_network:
         aliases:
@@ -21,7 +21,9 @@ services:
       - 389:389
       - 636:636
     networks:
-      - my_network
+      my_network:
+        aliases:
+          - directory.example.com
 
   ig:
     build: ./ig
@@ -42,7 +44,9 @@ services:
       - 8082:8080
       - 8445:8443
     networks:
-      - my_network
+      my_network:
+        aliases: 
+          - openidm.example.com 
 
   tomcat:
     build: ./tomcat

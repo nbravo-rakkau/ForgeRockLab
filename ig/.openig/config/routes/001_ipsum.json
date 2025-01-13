@@ -1,0 +1,19 @@
+{
+  "name" : "001_ipsum",
+  "baseURI" : "https://www.lipsum.com",
+  "condition" : "${find(request.uri.path, '^/ipsum')}",
+  "capture" : [ "request", "response" ],
+  "heap" : [ {
+    "name" : "ReverseProxyHandler",
+    "type" : "ReverseProxyHandler",
+    "capture" : [ "request", "response" ]
+  }, {
+    "name" : "capture",
+    "type" : "CaptureDecorator",
+    "config" : {
+      "captureEntity" : true,
+      "captureContext" : true
+    }
+  } ],
+  "handler" : "ReverseProxyHandler"
+}

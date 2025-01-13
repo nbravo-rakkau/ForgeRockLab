@@ -1,0 +1,47 @@
+{
+  "connectors": [
+    {
+      "port": 8081
+    },
+    {
+      "port": 8444,
+      "tls": "ServerTlsOptions-1"
+    }
+  ],
+  "session": {
+    "cookie": {
+      "sameSite": "none",
+      "secure": false
+    }
+  },  
+  "heap": [
+    {
+      "name": "ServerTlsOptions-1",
+      "type": "ServerTlsOptions",
+      "config": {
+        "keyManager": {
+          "type": "SecretsKeyManager",
+          "config": {
+            "signingSecretId": "key.manager.secret.id",
+            "secretsProvider": "ServerIdentityStore"
+          }
+        }
+      }
+    },
+    {
+      "name": "ServerIdentityStore",
+      "type": "FileSystemSecretStore",
+      "config": {
+        "format": "PLAIN",
+        "directory": "/secrets",
+        "suffix": ".pem",
+        "mappings": [{
+          "secretId": "key.manager.secret.id",
+          "format": {
+            "type": "PemPropertyFormat"
+          }
+        }]
+      }
+    }
+  ]
+}

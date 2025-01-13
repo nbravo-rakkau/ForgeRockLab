@@ -21,26 +21,25 @@ RUN ./bin/dskeymgr create-deployment-id --deploymentIdPassword customTestDS123. 
 
 # HEALTHCHECK --start-period=30s CMD bin/status -h localhost -p 4444 -D "uid=admin" -w Iden2006 --trustAll
 
-#--deploymentKeyPassword password \
-RUN ./setup --rootUserDN uid=admin \
-            --rootUserPassword Iden2006 \
-            --monitorUserPassword Iden2006 \
-            --hostname ds \
+RUN ./setup --deploymentId $(cat /usr/local/deployment_id.txt) \
+            --deploymentIdPassword customTestDS123. \
+            --rootUserDN uid=admin \
+            --rootUserPassword str0ngAdm1nPa55word \
+            --monitorUserPassword str0ngMon1torPa55word \
+            --hostname directory.example.com \
             --adminConnectorPort 4444 \
-            --ldapPort 389 \
+            --ldapPort 1389 \
             --enableStartTls \
-            --ldapsPort 636 \
-            --httpPort 80 \
-            --httpsPort 443 \
+            --ldapsPort 1636 \
             --profile am-config \
-            --set am-config/amConfigAdminPassword:Iden2006 \
+            --set am-config/amConfigAdminPassword:5up35tr0ng \
             --profile am-cts \
-            --set am-cts/amCtsAdminPassword:Iden2006 \
+            --set am-cts/amCtsAdminPassword:5up35tr0ng \
             --set am-cts/tokenExpirationPolicy:am-sessions-only \
             --profile am-identity-store \
-            --set am-identity-store/amIdentityStoreAdminPassword:Iden2006 \
-            --acceptLicense \
-            --deploymentId $(cat /usr/local/deployment_id.txt) \
-            --deploymentIdPassword customTestDS123.
+            --set am-identity-store/amIdentityStoreAdminPassword:5up35tr0ng \
+            --profile idm-repo \
+            --set idm-repo/domain:forgerock.io \
+            --acceptLicense
 
 CMD ["/usr/local/opendj/bin/start-ds", "--nodetach"]

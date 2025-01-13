@@ -33,4 +33,5 @@ RUN apk update && apk add --no-cache \
 
 ENV IG_RUN_MODE=development
 ENV AGENT_SECRET_ID=UGluZ0FnZW50MjAyNC4=
+#ENTRYPOINT ROOT_LOG_LEVEL=DEBUG ${INSTALL_DIR}/bin/start.sh ${IG_INSTANCE_DIR}
 ENTRYPOINT ${INSTALL_DIR}/bin/start.sh ${IG_INSTANCE_DIR}
